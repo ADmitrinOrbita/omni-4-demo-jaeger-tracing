@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+remote:
+  service:
+    host: ${REMOTE_SERVER_URL}
+    port: ${REMOTE_SERVER_PORT}
+    path: ${REMOTE_SERVER_PATH}
+
+opentracing:
+  jaeger:
+    service-name: client
+    enabled: true
+    udp-sender:
+      host: jaeger-agent
+      port: 6831
+  # Рекомендация архитектуры
+    enable-b3-propagation: true
+    log-spans: true
+  # На данный момент согласно требованиям информационной безопасности должно быть отключено трассирование SQL-запросов:
+  spring:
+    cloud:
+      jdbc:
+        enabled: false
