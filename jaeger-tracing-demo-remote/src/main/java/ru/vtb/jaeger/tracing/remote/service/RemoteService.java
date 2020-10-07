@@ -17,9 +17,9 @@ public class RemoteService {
     private Tracer tracer;
 
     /**
-     * Демонстрация получения данных от удалённого сервиса
+     * Демонстрация отправки данных удалённым сервисом
      *
-     * Дополнительно трассировка обогащается новым span-ом, созданным дочерним от active span
+     * Дополнительно трассировка обогащается новым span-ом, который создан дочерним по отношению к active span
      */
     public String getRemoteServiceInformation() {
         log.info("-- Getting important information from remote service --");

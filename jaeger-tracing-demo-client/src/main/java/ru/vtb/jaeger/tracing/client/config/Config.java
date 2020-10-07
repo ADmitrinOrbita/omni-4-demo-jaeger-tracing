@@ -8,6 +8,9 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class Config {
 
+    /**
+     * RestTemplate необходимо поднимать как Bean для возможности встраивания трассировки от Jaeger
+     */
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
         return restTemplateBuilder.build();
