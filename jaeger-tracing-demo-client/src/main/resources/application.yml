@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: jaeger-tracing-demo-client
+
+# Конфигурация адреса удалённого сервиса для демонстрации вызова с трассировкой
+remote:
+  service:
+    host: ${REMOTE_SERVER_URL}
+    port: ${REMOTE_SERVER_PORT}
+    path: ${REMOTE_SERVER_PATH}
+
+# Конфигурация трассировки
+opentracing:
+  jaeger:
+    # Имя, с которым сервис будет отображаться на UI для jaeger-query
+    service-name: jaeger-tracing-demo-client
+    enabled: true
+    udp-sender:
+      host: jaeger-agent
+      port: 6831
+    # Рекомендации архитектуры:
+    # - For compatibility with Zipkin collectors (включение приводит к потере просмотра трассировки через jaeger)
+    #    enable-b3-propagation: true
+    # - By default spans are logged to the console.
+    log-spans: true
+# Согласно требованиям информационной безопасности должно быть отключено трассирование SQL-запросов:
+  spring:
+    cloud:
+      jdbc:
+        enabled: false

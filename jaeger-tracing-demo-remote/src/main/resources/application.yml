@@ -1,0 +1,15 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: jaeger-tracing-demo-remote
+
+opentracing:
+  jaeger:
+    # Имя, с которым сервис будет отображаться на UI для jaeger-query
+    service-name: jaeger-tracing-demo-remote
+    enabled: true
+    udp-sender:
+      host: jaeger-agent
+      port: 6831
